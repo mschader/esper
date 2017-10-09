@@ -2,7 +2,7 @@
 #include "Device.h"
 
 
-constexpr const char BME_NAME[] = "bme"
+constexpr const char BME_NAME[] = "bme";
 
 class EsensDevice : public Device {
 public:
