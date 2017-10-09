@@ -27,7 +27,6 @@ public:
             }
 
             Serial.println("-- Default Test --");
-            delayTime = 1000;
 
             Serial.println();
 
@@ -36,7 +35,6 @@ public:
             this->updateTimer.initializeMs(10000, TimerDelegate(&BmeSensor::publishCurrentState, this));
             this->updateTimer.start(/*repeating:*/true);
         }
-    }
 
 protected:
     virtual void publishCurrentState() {
@@ -45,7 +43,7 @@ protected:
         float currentTemperature = bme.readTemperature();
         LOG.log("currentTemperature:", currentTemperature);
         float currentHumidity = bme.readHumidity();
-        Log.log("currentHumidity", currentHumidity);
+        LOG.log("currentHumidity", currentHumidity);
 
         this->publish("pressure", String(currentPressure), true);
         this->publish("temperature", String(currentTemperature), true);
