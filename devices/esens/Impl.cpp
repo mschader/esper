@@ -8,6 +8,9 @@ class EsensDevice : public Device {
 public:
     EsensDevice() :
             bme(this)
+    {
+        this->add(&(this->bme));
+    }
 
 private:
     BmeSensor<BME_NAME> bme;
