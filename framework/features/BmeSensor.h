@@ -6,7 +6,7 @@
 
 #define SEALEVELPRESSURE_HPA (1013.25)
 
-template<const char* const name, const int scl_gpio = 14, const int sda_gpio = 12>
+template<const char* const name>
 class BmeSensor : public Feature<name> {
 
 protected:
@@ -19,7 +19,6 @@ public:
             Feature<name>(device) {
 
             bool status;
-            Wire.begin(scl_gpio, sda_gpio);
             status = bme.init();
             if (!status) {
                 Serial.println("Could not find a valid BME280 sensor, check wiring!");
