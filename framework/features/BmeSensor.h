@@ -1,3 +1,7 @@
+/* Bme Sensor makes use of the Adafruit BME280 Library which was forked into
+ * Sming at github mschader/Sming
+ * SDA -> D4, SCL -> D3 */
+
 #ifndef BME280_SENSOR_H
 #define BME280_SENSOR_H
 
