@@ -23,7 +23,7 @@ public:
             Feature<name>(device) {
 
             bool status;
-            status = bme.init();
+            status = bme.begin();
             if (!status) {
                 Serial.println("Could not find a valid BME280 sensor, check wiring!");
                 while (1);
