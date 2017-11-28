@@ -6,11 +6,11 @@
 #define BME280_SENSOR_H
 
 #include "Feature.h"
-#include <Libraries/Adafruit_BME280/Adafruit_BME280.h>
+#include <Libraries/Adafruit_BME280_Library/Adafruit_BME280.h>
 
 #define SEALEVELPRESSURE_HPA (1013.25)
 
-template<const char* const name>
+template<const char* const name, uint8_t addr>
 class BmeSensor : public Feature<name> {
 
 protected:
@@ -23,7 +23,7 @@ public:
             Feature<name>(device) {
 
             bool status;
-            status = bme.begin();
+            status = bme.begin(addr);
             if (!status) {
                 Serial.println("Could not find a valid BME280 sensor, check wiring!");
                 while (1);

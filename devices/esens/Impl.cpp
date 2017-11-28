@@ -3,11 +3,12 @@
 
 
 constexpr const char BME_NAME[] = "bme";
+const uint8_t addr = 0x76;
 
 class EsensDevice : public Device {
 public:
     EsensDevice() :
-            bme(this)
+            bme(this, addr)
     {
         this->add(&(this->bme));
     }
