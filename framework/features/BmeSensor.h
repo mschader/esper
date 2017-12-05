@@ -15,7 +15,7 @@ class BmeSensor : public Feature<name> {
 
 protected:
     using Feature<name>::LOG;
-    Adafruit_BME280 bme;
+    Adafruit_BME280 bme280;
 
 public:
 
@@ -23,7 +23,7 @@ public:
             Feature<name>(device) {
 
             bool status;
-            status = bme.begin(addr);
+            status = bme280.begin(addr);
             if (!status) {
                 Serial.println("Could not find a valid BME280 sensor, check wiring!");
                 while (1);
@@ -35,17 +35,17 @@ public:
 
             delay(100); // let sensor boot up
 
-            this->updateTimer.initializeMs(10000, TimerDelegate(&BmeSensor::publishCurrentState, this));
+            this->updateTimer.initializeMs(15000, TimerDelegate(&BmeSensor::publishCurrentState, this));
             this->updateTimer.start(/*repeating:*/true);
         }
 
 protected:
     virtual void publishCurrentState() {
-        long currentPressure = bme.readPressure();
+        long currentPressure = bme280.readPressure();
         LOG.log("currentPressure:", currentPressure);
-        float currentTemperature = bme.readTemperature();
+        float currentTemperature = bme280.readTemperature();
         LOG.log("currentTemperature:", currentTemperature);
-        float currentHumidity = bme.readHumidity();
+        float currentHumidity = bme280.readHumidity();
         LOG.log("currentHumidity", currentHumidity);
 
         this->publish("pressure", String(currentPressure), true);

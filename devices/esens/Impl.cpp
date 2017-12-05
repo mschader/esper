@@ -2,7 +2,7 @@
 #include "Device.h"
 
 
-constexpr const char BME_NAME[] = "bme";
+constexpr const char BME_NAME[] = "bme280";
 const uint8_t addr = 0x76;
 
 class EsensDevice : public Device {
